@@ -1,0 +1,12 @@
+:root {
+  --background: #0d0f0f;
+  --surface: #1a1e1e;
+  --border: #262b2b;
+  --accent: #7b9cff;
+  --text: #e8e8e8;
+
+  --font-logo: "Chewy", cursive;
+  --font-body: "Noto Sans", system-ui, sans-serif;
+
+  --sidebar-width: 260px;
+}
