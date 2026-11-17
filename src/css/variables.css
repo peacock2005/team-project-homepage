@@ -1,0 +1,12 @@
+:root {
+  --background: #0d0f0f;
+  --surface: #1a1e1e;
+  --border: #262b2b;
+  --accent: #7b9cff;
+  --text: #e8e8e8;
+
+  --font-heading: "Mochiy Pop One", sans-serif;
+  --font-body: "Noto Sans KR", sans-serif;
+
+  --sidebar-width: 260px;
+}
