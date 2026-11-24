@@ -11,6 +11,7 @@
   gap: 0.5rem;
   font-size: 1.125rem;
   font-weight: 600;
+  margin: 0;
 }
 
 .filters_reset-button {
@@ -39,6 +40,7 @@
 .divider {
   border: none;
   border-top: 1px solid var(--hover);
+  margin: 1.25rem 0;
 }
 
 /* Genre Section */
@@ -52,11 +54,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1.25rem;
 }
 
 .genre-section_title {
   font-weight: 600;
   font-size: 0.875rem;
+  margin: 0;
 }
 
 .genre-section_instruction {
@@ -98,4 +102,67 @@
   background: var(--accent);
   color: var(--chip-background);
   border-color: transparent;
+}
+
+/* Content Warning Section */
+
+.content-warning-section {
+  border: 0;
+  padding: 0;
+}
+
+.content-warning-section_title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.content-warning-section_instruction {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.content-warning-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.content-warning-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.content-warning-option:hover {
+  color: var(--text);
+}
+
+.content-warning-option input {
+  appearance: none;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  background: var(--chip-background);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Check icon from Lucide (https://lucide.dev/icons/check), ISC License */
+.content-warning-option input:checked {
+  background-color: var(--accent);
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIHByZXZpZXctaWNvbiI+PHBhdGggZD0iTTIwIDYgOSAxN2wtNS01Ii8+PC9zdmc+");
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.content-warning-option:has(input:checked) {
+  color: var(--text);
 }
