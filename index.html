@@ -14,12 +14,64 @@
 
     <link rel="stylesheet" href="src/css/variables.css" />
     <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="stylesheet" href="src/css/filters.css" />
   </head>
 
   <body>
     <div class="app">
       <!-- Sidebar with filters -->
-      <aside class="sidebar" id="filters" aria-label="Filters"></aside>
+      <aside class="sidebar" id="filters" aria-label="Filters">
+        <form class="filters" id="filters-form">
+          <div class="filters_header">
+            <h2 class="filters_title">
+              <!-- Icon: Lucide (https://lucide.dev/icons/sliders-horizontal) -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-sliders-horizontal preview-icon"
+              >
+                <path d="M10 5H3" />
+                <path d="M12 19H3" />
+                <path d="M14 3v4" />
+                <path d="M16 17v4" />
+                <path d="M21 12h-9" />
+                <path d="M21 19h-5" />
+                <path d="M21 5h-7" />
+                <path d="M8 10v4" />
+                <path d="M8 12H3" />
+              </svg>
+              Filters
+            </h2>
+
+            <button type="reset" class="filters_reset-button">
+              <!-- Icon: Lucide (https://lucide.dev/icons/rotate-ccw) -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-rotate-ccw preview-icon"
+              >
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+              </svg>
+              Reset
+            </button>
+          </header>
+        </form>
+      </aside>
 
       <div class="page">
         <!-- Header -->
@@ -30,18 +82,18 @@
         <main>
           <!-- Search bar-->
           <div class="search-row">
-            <p class="search-row__count">
-              Movie found <span class="search-row__number">24</span>
+            <p class="search-row_count">
+              Movie found <span class="search-row_number">24</span>
             </p>
 
             <div class="search-bar">
               <input
                 type="search"
                 id="search-input"
-                class="search-bar__input"
+                class="search-bar_input"
                 placeholder="Search for movies by title or keyword.."
               />
-              <button id="search-button" class="search-bar__button">
+              <button id="search-button" class="search-bar_button">
                 SEARCH
               </button>
             </div>
