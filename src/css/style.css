@@ -45,12 +45,12 @@ header h1 {
   gap: 1.5rem;
 }
 
-.search-row__count {
+.search-row_count {
   font-size: 1.25rem;
   font-weight: 600;
 }
 
-.search-row__number {
+.search-row_number {
   margin-left: 0.25rem;
   color: var(--accent);
 }
@@ -70,7 +70,7 @@ header h1 {
   outline: 2px solid var(--accent);
 }
 
-.search-bar__input {
+.search-bar_input {
   flex: 1;
   border: none;
   outline: none;
@@ -80,11 +80,11 @@ header h1 {
   font-size: 0.8125rem;
 }
 
-.search-bar__input::placeholder {
+.search-bar_input::placeholder {
   color: var(--input-placeholder);
 }
 
-.search-bar__button {
+.search-bar_button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 8px;
@@ -96,6 +96,6 @@ header h1 {
   cursor: pointer;
 }
 
-.search-bar__button:hover {
+.search-bar_button:hover {
   filter: brightness(1.08);
 }

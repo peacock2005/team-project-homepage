@@ -1,0 +1,37 @@
+.filters_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters_title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.filters_reset-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  background: none;
+  border: 0;
+  gap: 0.375rem;
+  padding: 0;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.filters_reset-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.filters_reset-button:hover {
+  color: var(--accent);
+}
