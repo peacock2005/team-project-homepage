@@ -1,3 +1,7 @@
+.filters {
+  flex: 1;
+}
+
 /* Filter Header */
 .filters_header {
   display: flex;
@@ -165,4 +169,29 @@
 
 .content-warning-option:has(input:checked) {
   color: var(--text);
+}
+
+/* Content Note */
+
+.content-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--chip-background);
+  border-radius: 10px;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+}
+
+.content-note_icon {
+  flex-shrink: 0;
+  width: 0.9rem;
+  height: 1lh;
+}
+
+.content-note_text {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
 }
