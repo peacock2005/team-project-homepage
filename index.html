@@ -81,43 +81,93 @@
 
             <div class="genre-options">
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="drama" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="drama"
+                  id="genre-drama"
+                />
                 Drama
               </label>
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="comedy" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="comedy"
+                  id="genre-comedy"
+                />
                 Comedy
               </label>
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="romance" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="romance"
+                  id="genre-romance"
+                />
                 Romance
               </label>
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="sci-fi" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="sci-fi"
+                  id="genre-sci-fi"
+                />
                 Sci-Fi
               </label>
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="fantasy" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="fantasy"
+                  id="genre-fantasy"
+                />
                 Fantasy
               </label>
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="adventure" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="adventure"
+                  id="genre-adventure"
+                />
                 Adventure
               </label>
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="horror" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="horror"
+                  id="genre-horror"
+                />
                 Horror
               </label>
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="thriller" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="thriller"
+                  id="genre-thriller"
+                />
                 Thriller
               </label>
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="animation" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="animation"
+                  id="genre-animation"
+                />
                 Animation
               </label>
               <label class="genre-option">
-                <input type="checkbox" name="genre" value="documentary" />
+                <input
+                  type="checkbox"
+                  name="genre"
+                  value="documentary"
+                  id="genre-documentary"
+                />
                 Documentary
               </label>
             </div>
@@ -233,8 +283,214 @@
             </div>
           </div>
 
-          <!-- Active filters (placeholder) -->
-          <div id="active-filters"></div>
+          <!-- Active filters -->
+          <!-- Icon: Lucide (https://lucide.dev/icons/x) -->
+          <div class="active-filters">
+            <label class="active-filter" for="genre-drama" data-genre="drama">
+              Drama
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+            <label class="active-filter" for="genre-comedy" data-genre="comedy">
+              Comedy
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+            <label
+              class="active-filter"
+              for="genre-romance"
+              data-genre="romance"
+            >
+              Romance
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+            <label class="active-filter" for="genre-sci-fi" data-genre="sci-fi">
+              Sci-Fi
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+            <label
+              class="active-filter"
+              for="genre-fantasy"
+              data-genre="fantasy"
+            >
+              Fantasy
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+            <label
+              class="active-filter"
+              for="genre-adventure"
+              data-genre="adventure"
+            >
+              Adventure
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+            <label class="active-filter" for="genre-horror" data-genre="horror">
+              Horror
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+            <label
+              class="active-filter"
+              for="genre-thriller"
+              data-genre="thriller"
+            >
+              Thriller
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+            <label
+              class="active-filter"
+              for="genre-animation"
+              data-genre="animation"
+            >
+              Animation
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+            <label
+              class="active-filter"
+              for="genre-documentary"
+              data-genre="documentary"
+            >
+              Documentary
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x preview-icon"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </label>
+          </div>
 
           <!-- Film card (placeholder) -->
           <div id="movie-grid"></div>
