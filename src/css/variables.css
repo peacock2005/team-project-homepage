@@ -4,6 +4,9 @@
   --border: #262b2b;
   --accent: #7b9cff;
   --text: #e8e8e8;
+  --text-muted: #949494;
+  --hover: #3e3e3e;
+  --chip-background: #262626;
 
   --input-background: #f1f2ea;
   --input-text: #1a1e1e;
@@ -12,5 +15,5 @@
   --font-heading: "Mochiy Pop One", sans-serif;
   --font-body: "Noto Sans KR", sans-serif;
 
-  --sidebar-width: 260px;
+  --sidebar-width: clamp(220px, 25vw, 320px);
 }

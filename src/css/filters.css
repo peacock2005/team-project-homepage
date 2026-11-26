@@ -1,0 +1,237 @@
+.filters {
+  flex: 1;
+}
+
+/* Filter Header */
+.filters_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters_title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.filters_reset-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  background: none;
+  border: 0;
+  gap: 0.375rem;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.filters_reset-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.filters_reset-button:hover {
+  color: var(--accent);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--hover);
+  margin: 1.25rem 0;
+}
+
+/* Genre Section */
+
+.genre-section {
+  border: 0;
+  padding: 0;
+}
+
+.genre-section_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.genre-section_title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.genre-section_instruction {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.genre-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.genre-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.75rem;
+  background: var(--chip-background);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.genre-option:hover {
+  background: var(--hover);
+}
+
+/* Hide checkbox */
+.genre-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.genre-option:has(input:checked) {
+  background: var(--accent);
+  color: var(--chip-background);
+  border-color: transparent;
+}
+
+/* Content Warning Section */
+
+.content-warning-section {
+  border: 0;
+  padding: 0;
+}
+
+.content-warning-section_title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.content-warning-section_instruction {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.content-warning-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.content-warning-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.content-warning-option:hover {
+  color: var(--text);
+}
+
+.content-warning-option input {
+  appearance: none;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  background: var(--chip-background);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Check icon from Lucide (https://lucide.dev/icons/check), ISC License */
+.content-warning-option input:checked {
+  background-color: var(--accent);
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIHByZXZpZXctaWNvbiI+PHBhdGggZD0iTTIwIDYgOSAxN2wtNS01Ii8+PC9zdmc+");
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.content-warning-option:has(input:checked) {
+  color: var(--text);
+}
+
+/* Content Note */
+
+.content-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--chip-background);
+  border-radius: 10px;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+}
+
+.content-note_icon {
+  flex-shrink: 0;
+  width: 0.9rem;
+  height: 1lh;
+}
+
+.content-note_text {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+/* Active filters */
+
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Hidden by default */
+.active-filter {
+  display: none;
+  align-items: center;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  background: var(--chip-background);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.active-filter:hover {
+  background: var(--hover);
+}
+
+.app:has(#genre-drama:checked) .active-filter[data-genre="drama"],
+.app:has(#genre-comedy:checked) .active-filter[data-genre="comedy"],
+.app:has(#genre-romance:checked) .active-filter[data-genre="romance"],
+.app:has(#genre-sci-fi:checked) .active-filter[data-genre="sci-fi"],
+.app:has(#genre-fantasy:checked) .active-filter[data-genre="fantasy"],
+.app:has(#genre-adventure:checked) .active-filter[data-genre="adventure"],
+.app:has(#genre-horror:checked) .active-filter[data-genre="horror"],
+.app:has(#genre-thriller:checked) .active-filter[data-genre="thriller"],
+.app:has(#genre-animation:checked) .active-filter[data-genre="animation"],
+.app:has(#genre-documentary:checked) .active-filter[data-genre="documentary"] {
+  display: inline-flex;
+}
