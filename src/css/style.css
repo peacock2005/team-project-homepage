@@ -118,3 +118,9 @@ header h1 {
 .search-bar_button:hover {
   filter: brightness(1.08);
 }
+/* Mobile-first movie grid */
+#movie-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
