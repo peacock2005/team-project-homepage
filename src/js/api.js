@@ -1,10 +1,14 @@
-// Loads sample movie data until the movie API is connected.
-export async function getMovies() {
-    const response = await fetch("./src/data/mockData.json");
+// Search for movies through the local Python server.
+export async function searchMovies(query) {
+    const response = await fetch(
+        `/api/search?query=${encodeURIComponent(query)}`
+    );
 
     if (!response.ok) {
-        throw new Error("Failed to load movie data.");
+        throw new Error("Failed to fetch movies.");
     }
 
-    return await response.json();
+    const data = await response.json();
+
+    return data.results;
 }

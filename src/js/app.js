@@ -1,4 +1,4 @@
-import { getMovies } from "./api.js";
+import { searchMovies } from "./api.js";
 
 async function startApp() {
     const searchInput = document.querySelector("#search-input");
@@ -6,56 +6,59 @@ async function startApp() {
     const movieGrid = document.querySelector("#movie-grid");
     const movieCount = document.querySelector(".search-row_number");
 
-    try {
-        const movies = await getMovies();
-        console.log("Movies loaded:", movies);
+    function showMovies(movieList) {
+        // Clear the previous search results.
+        movieGrid.replaceChildren();
 
-        function showMovies(movieList) {
-            // Clear the previous search results.
-            movieGrid.replaceChildren();
+        // Show the number of movies currently displayed.
+        movieCount.textContent = movieList.length;
 
-            // Show the number of movies currently displayed.
-            movieCount.textContent = movieList.length;
-
-            if (movieList.length === 0) {
-                movieGrid.textContent = "No movies found.";
-                return;
-            }
-
-            movieList.forEach((movie) => {
-                const title = document.createElement("p");
-                title.textContent = movie.title;
-                movieGrid.appendChild(title);
-            });
+        if (movieList.length === 0) {
+            movieGrid.textContent = "No movies found.";
+            return;
         }
 
-        function searchMovies() {
-            const query = searchInput.value.trim().toLowerCase();
-
-            const results = movies.filter((movie) =>
-                movie.title.toLowerCase().includes(query)
-            );
-
-            showMovies(results);
-        }
-
-        // Search when the button is clicked.
-        searchButton.addEventListener("click", searchMovies);
-
-        // Search when Enter is pressed in the search input.
-        searchInput.addEventListener("keydown", (event) => {
-            if (event.key === "Enter") {
-                searchMovies();
-            }
+        movieList.forEach((movie) => {
+            const title = document.createElement("p");
+            title.textContent = movie.title;
+            movieGrid.appendChild(title);
         });
-
-        // Show all movies when the page first loads.
-        showMovies(movies);
-    } catch (error) {
-        console.error("Could not load movies:", error);
-        movieCount.textContent = "0";
-        movieGrid.textContent = "Could not load movies. Please try again.";
     }
+
+    async function handleSearch() {
+        const query = searchInput.value.trim();
+
+        if (!query) {
+            movieGrid.textContent = "Please enter a movie title.";
+            movieCount.textContent = "0";
+            return;
+        }
+
+        movieGrid.textContent = "Searching...";
+        movieCount.textContent = "0";
+
+        try {
+            const movies = await searchMovies(query);
+            showMovies(movies);
+        } catch (error) {
+            console.error("Movie search failed:", error);
+            movieGrid.textContent = "Could not load movies. Please try again.";
+        }
+    }
+
+    // Search when the button is clicked.
+    searchButton.addEventListener("click", handleSearch);
+
+    // Search when Enter is pressed in the search input.
+    searchInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+    });
+
+    // Wait for the user to enter a search query.
+    movieGrid.textContent = "Search for a movie by title.";
+    movieCount.textContent = "0";
 }
 
 startApp();
