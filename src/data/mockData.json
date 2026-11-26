@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "Sample Movie A",
+    "overview": "A sample movie used for testing Framecheck.",
+    "posterPath": "",
+    "releaseDate": "2024-01-01",
+    "genres": ["Drama"]
+  },
+  {
+    "id": 2,
+    "title": "Sample Movie B",
+    "overview": "Another sample movie used for testing Framecheck.",
+    "posterPath": "",
+    "releaseDate": "2025-01-01",
+    "genres": ["Adventure"]
+  }
+]
