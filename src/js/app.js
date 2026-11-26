@@ -4,7 +4,7 @@ async function startApp() {
     const searchInput = document.querySelector("#search-input");
     const searchButton = document.querySelector("#search-button");
     const movieGrid = document.querySelector("#movie-grid");
-    const movieCount = document.querySelector(".search-row__number");
+    const movieCount = document.querySelector(".search-row_number");
 
     try {
         const movies = await getMovies();
