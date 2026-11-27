@@ -96,19 +96,19 @@ class FramecheckHandler(BaseHTTPRequestHandler):
             self.send_json(500, {"error": "TMDB API key is not configured."})
             return
 
-            params = urlencode({
+        params = urlencode({
             "query": query,
             "language": "en-US",
-            })
-            url = f"https://api.themoviedb.org/3/search/movie?{params}"
-            request = Request(
-             url,
-             headers={
+        })
+        url = f"https://api.themoviedb.org/3/search/movie?{params}"
+        request = Request(
+            url,
+            headers={
                 "Accept": "application/json",
                 "Authorization": f"Bearer {api_key}",
-             },
-            )
-        
+            },
+        )
+
         try:
             with urlopen(request, timeout=10) as response:
                 data = json.load(response)
