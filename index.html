@@ -21,7 +21,11 @@
     <div class="app">
       <!-- Sidebar with filters -->
       <aside class="sidebar" id="filters" aria-label="Filters">
-        <form class="filters" id="filters-form">
+        <details class="filters-panel">
+          <summary class="filters-panel_toggle">Filters</summary>
+
+          <form class="filters" id="filters-form">
+
           <div class="filters_header">
             <h2 class="filters_title">
               <!-- Icon: Lucide (https://lucide.dev/icons/sliders-horizontal) -->
@@ -255,6 +259,7 @@
             content details before watching.
           </p>
         </div>
+        </details>
       </aside>
 
       <div class="page">

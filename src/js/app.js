@@ -1,4 +1,16 @@
 import { searchMovies } from "./api.js";
+// Open the filters on wider screens and collapse them on small screens.
+const filtersPanel = document.querySelector(".filters-panel");
+const smallScreen = window.matchMedia("(max-width: 767px)");
+
+function updateFiltersPanel(event) {
+    if (!filtersPanel) return;
+
+    filtersPanel.open = !event.matches;
+}
+
+updateFiltersPanel(smallScreen);
+smallScreen.addEventListener("change", updateFiltersPanel);
 
 async function startApp() {
     const searchInput = document.querySelector("#search-input");
