@@ -7,5 +7,4 @@ Firebase web app configuration into `src/js/config.js` and export the object as
 `firebaseConfig` (change `const firebaseConfig` to `export const firebaseConfig`).
 Git ignores this local file. Use only the Firebase web app configuration here.
 
-Run the site over HTTP, open **Online groups**, and select **Connect as guest**.
-The room controls below are still previews.
+Run the site over HTTP and open **Online groups** to preview an invitation. The preview needs no account. When shared rooms are connected, creating or joining a room will start a Firebase guest session automatically.
