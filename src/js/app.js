@@ -1,4 +1,7 @@
 import { searchMovies } from "./api.js";
+import { setupGroupSurvey } from "./groupSurvey.js";
+
+setupGroupSurvey(document.querySelector(".group-survey"));
 // Open the filters on wider screens and collapse them on small screens.
 const filtersPanel = document.querySelector(".filters-panel");
 const smallScreen = window.matchMedia("(max-width: 767px)");

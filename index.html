@@ -269,6 +269,22 @@
         </header>
 
         <main>
+          <details class="group-survey">
+            <summary>Group trigger survey</summary>
+            <p>Local demo. Take turns on this device to get sample movie recommendations.</p>
+            <form>
+              <label>Number of participants <input name="members" type="number" min="2" max="12" value="2" required /></label>
+              <button type="submit">Start new survey</button>
+            </form>
+            <p role="status"></p>
+            <div class="group-survey_questions" hidden>
+              <h3 tabindex="-1"></h3>
+              <button type="button" value="like">Like</button>
+              <button type="button" value="dislike">Dislike</button>
+            </div>
+            <div class="group-survey_result" tabindex="-1" hidden></div>
+          </details>
+
           <!-- Search bar-->
           <div class="search-row">
             <p class="search-row_count">

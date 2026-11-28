@@ -5,7 +5,7 @@
     "overview": "A sample movie used for testing Framecheck.",
     "posterPath": "",
     "releaseDate": "2024-01-01",
-    "genres": ["Drama"]
+    "genres": ["Drama"], "triggers": ["guns"]
   },
   {
     "id": 2,
@@ -13,6 +13,6 @@
     "overview": "Another sample movie used for testing Framecheck.",
     "posterPath": "",
     "releaseDate": "2025-01-01",
-    "genres": ["Adventure"]
+    "genres": ["Adventure"], "triggers": []
   }
 ]
