@@ -10,6 +10,22 @@ service cloud.firestore {
         && request.resource.data.createdAt == request.time;
       allow get: if request.auth != null && resource.data.hostUid == request.auth.uid;
 
+      match /preferences/{uid} {
+        allow get: if request.auth != null && request.auth.uid == uid;
+
+        allow create, update: if request.auth != null
+          && request.auth.uid == uid
+          && (exists(/databases/$(database)/documents/rooms/$(code)/members/$(uid))
+            || get(/databases/$(database)/documents/rooms/$(code)).data.hostUid == uid)
+          && request.resource.data.keys().hasOnly(['avoidedTriggers', 'genres'])
+          && request.resource.data.avoidedTriggers is list
+          && request.resource.data.avoidedTriggers.size() <= 3
+          && request.resource.data.avoidedTriggers.hasOnly(['guns', 'explicit-scenes', 'graphic-violence'])
+          && request.resource.data.genres is list
+          && request.resource.data.genres.size() <= 4
+          && request.resource.data.genres.hasOnly(['Drama', 'Comedy', 'Adventure', 'Horror']);
+      }
+
       match /members/{uid} {
         allow get: if request.auth != null && request.auth.uid == uid;
         allow create: if request.auth != null

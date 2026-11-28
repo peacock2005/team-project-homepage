@@ -26,3 +26,11 @@ export async function joinRoom(code) {
         }
     });
 }
+
+export async function saveRoomPreferences(code, preferences) {
+    const [{ app, user }, { doc, getFirestore, setDoc }] = await Promise.all([
+        getGuestSession(),
+        import(sdk + "firebase-firestore.js"),
+    ]);
+    await setDoc(doc(getFirestore(app), "rooms", code, "preferences", user.uid), preferences);
+}

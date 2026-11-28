@@ -28,7 +28,35 @@ export function setupOnlineGroups(section) {
     const inviteField = room.querySelector("input");
     const inviteLabel = room.querySelector("label");
     const status = section.querySelector("[role=status]");
+    const preferences = room.querySelector(".online-groups_preferences");
+    const preferenceStatus = preferences.querySelector("[role=status]");
+    const saveButton = preferences.querySelector('button[type="submit"]');
+    let activeRoom;
+
+    preferences.addEventListener("submit", async event => {
+        event.preventDefault();
+        const code = activeRoom;
+        const data = new FormData(preferences);
+        saveButton.disabled = true;
+        preferenceStatus.textContent = "Saving choices…";
+        try {
+            const { saveRoomPreferences } = await import("./groupRooms.js");
+            await saveRoomPreferences(code, {
+                avoidedTriggers: data.getAll("trigger"),
+                genres: data.getAll("genre"),
+            });
+            if (activeRoom === code) preferenceStatus.textContent = "Your choices are saved.";
+        } catch {
+            if (activeRoom === code) preferenceStatus.textContent = "Could not save your choices. Try again.";
+        } finally {
+            saveButton.disabled = false;
+        }
+    });
+
     function showRoom(code, isHost) {
+        if (activeRoom !== code) preferences.reset();
+        activeRoom = code;
+        preferenceStatus.textContent = "";
         heading.textContent = isHost ? `Room created · ${code}` : `Room joined · ${code}`;
         details.textContent = isHost
             ? "Share the invite link for one-click joining, or share the room code."

@@ -513,6 +513,23 @@
               <h3 tabindex="-1"></h3>
               <p></p>
               <label>Invite link <input type="url" readonly /></label>
+              <form class="online-groups_preferences">
+                <fieldset>
+                  <legend>Triggers to avoid</legend>
+                  <label><input type="checkbox" name="trigger" value="guns" /> Guns</label>
+                  <label><input type="checkbox" name="trigger" value="explicit-scenes" /> Sexually explicit scenes</label>
+                  <label><input type="checkbox" name="trigger" value="graphic-violence" /> Graphic violence</label>
+                </fieldset>
+                <fieldset>
+                  <legend>Preferred genres</legend>
+                  <label><input type="checkbox" name="genre" value="Drama" /> Drama</label>
+                  <label><input type="checkbox" name="genre" value="Comedy" /> Comedy</label>
+                  <label><input type="checkbox" name="genre" value="Adventure" /> Adventure</label>
+                  <label><input type="checkbox" name="genre" value="Horror" /> Horror</label>
+                </fieldset>
+                <button type="submit" class="search-bar_button">Save choices</button>
+                <p role="status"></p>
+              </form>
             </section>
           </details>
 
