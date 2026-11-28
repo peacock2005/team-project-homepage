@@ -11,3 +11,18 @@ export async function createRoom(code) {
         createdAt: serverTimestamp(),
     });
 }
+
+export async function joinRoom(code) {
+    const [{ app, user }, { doc, getFirestore, runTransaction, serverTimestamp }] = await Promise.all([
+        getGuestSession(),
+        import(sdk + "firebase-firestore.js"),
+    ]);
+    const database = getFirestore(app);
+    const member = doc(database, "rooms", code, "members", user.uid);
+    await runTransaction(database, async transaction => {
+        const existing = await transaction.get(member);
+        if (!existing.exists()) {
+            transaction.set(member, { joinedAt: serverTimestamp() });
+        }
+    });
+}
