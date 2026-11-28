@@ -27,7 +27,24 @@ export function setupOnlineGroups(section) {
     const details = room.querySelector("p");
     const inviteField = room.querySelector("input");
     const inviteLabel = room.querySelector("label");
-    const status = section.querySelector("[role=status]");
+    const status = section.querySelector("[role=status]:not([data-guest-status])");
+    const guestButton = section.querySelector("[data-guest-session]");
+    const guestStatus = section.querySelector("[data-guest-status]");
+
+    guestButton.addEventListener("click", async () => {
+        guestButton.disabled = true;
+        guestStatus.textContent = "Connecting to Firebase…";
+        try {
+            const { getGuestUser } = await import("./groupAuth.js");
+            await getGuestUser();
+            guestStatus.textContent = "Guest session connected.";
+        } catch (error) {
+            guestStatus.textContent = error.code === "auth/operation-not-allowed"
+                ? "Guest sign-in is not enabled in Firebase."
+                : "Could not connect as a guest. Check Firebase setup and try again.";
+            guestButton.disabled = false;
+        }
+    });
 
     function showRoomPreview(code, isHost) {
         heading.textContent = `Room preview · ${code}`;
