@@ -235,6 +235,8 @@
           </fieldset>
         </form>
 
+        <button type="submit" form="filters-form" class="search-bar_button">Recommend for me</button>
+
         <!-- Content note -->
         <div class="content-note">
           <!-- Icon: Lucide (https://lucide.dev/icons/info) -->
@@ -499,6 +501,12 @@
 
           <!-- Film card (placeholder) -->
           <div id="movie-grid"></div>
+          <section id="solo-recommendations" aria-labelledby="solo-title" hidden>
+            <h2 id="solo-title" tabindex="-1">Recommendations for you</h2>
+            <p role="status"></p>
+            <ul></ul>
+          </section>
+
           <details class="online-groups">
             <summary>Online groups</summary>
             <p>Create a room and share its invite link. Join by code if you only have the code.</p>
@@ -539,6 +547,7 @@
     </div>
     
     <script type="module" src="src/js/onlineGroups.js"></script>
+    <script type="module" src="src/js/soloRecommendations.js"></script>
     <script type="module" src="src/js/app.js"></script>
   </body>
 </html>
