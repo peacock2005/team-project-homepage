@@ -490,3 +490,31 @@ header h1 {
   color: var(--text-muted);
   font-size: 0.875rem;
 }
+
+.feature-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+  margin-block-start: 1rem;
+}
+
+.feature-navigation a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding-inline: 0.875rem;
+}
+
+.feature-navigation a.search-bar_button {
+  text-decoration: none;
+}
+
+.feature-navigation [data-open-feature="search"] {
+  color: var(--accent);
+}
+
+.feature-navigation a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
