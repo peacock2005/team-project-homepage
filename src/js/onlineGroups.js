@@ -33,31 +33,54 @@ export function setupOnlineGroups(section) {
     const saveButton = preferences.querySelector('button[type="submit"]');
     const choiceFields = preferences.querySelectorAll('input[type="checkbox"]');
     let activeRoom;
+    const choiceGroups = preferences.querySelectorAll("fieldset");
+    const editButton = preferences.querySelector("[data-edit-choices]");
+    const createButton = section.querySelector("[data-create-room]");
+    const joinButton = joinForm.querySelector('button[type="submit"]');
     let preferencesReady = false;
+
+    function showCompleted(completed) {
+        for (const group of choiceGroups) group.hidden = completed;
+        saveButton.hidden = completed;
+        editButton.hidden = !completed;
+    }
+
+    editButton.addEventListener("click", () => {
+        showCompleted(false);
+        preferenceStatus.textContent = "";
+        choiceFields[0].focus();
+    });
 
     preferences.addEventListener("submit", async event => {
         event.preventDefault();
-        if (!preferencesReady || saveButton.disabled) return;
+        if (!preferencesReady || saveButton.disabled || saveButton.hidden) return;
         const code = activeRoom;
         const data = new FormData(preferences);
         saveButton.disabled = true;
-        preferenceStatus.textContent = "Saving choices…";
+        createButton.disabled = true;
+        joinButton.disabled = true;
+        preferenceStatus.textContent = "Submitting choices…";
         try {
             const { saveRoomPreferences } = await import("./groupRooms.js");
             await saveRoomPreferences(code, {
                 avoidedTriggers: data.getAll("trigger"),
                 genres: data.getAll("genre"),
             });
-            if (activeRoom === code) preferenceStatus.textContent = "Your choices are saved.";
+            showCompleted(true);
+            preferenceStatus.textContent = "Your choices are submitted.";
+            editButton.focus();
         } catch {
-            if (activeRoom === code) preferenceStatus.textContent = "Could not save your choices. Try again.";
+            preferenceStatus.textContent = "Could not submit your choices. Try again.";
         } finally {
-            if (activeRoom === code) saveButton.disabled = !preferencesReady;
+            saveButton.disabled = false;
+            createButton.disabled = false;
+            joinButton.disabled = false;
         }
     });
 
     async function showRoom(code, isHost) {
         preferences.reset();
+        showCompleted(false);
         preferencesReady = false;
         saveButton.disabled = true;
         for (const field of choiceFields) field.disabled = true;
@@ -86,14 +109,13 @@ export function setupOnlineGroups(section) {
             }
             preferencesReady = true;
             saveButton.disabled = false;
-            preferenceStatus.textContent = saved ? "Your saved choices were restored." : "";
+            showCompleted(Boolean(saved));
+            preferenceStatus.textContent = saved ? "Your choices are submitted." : "";
         } catch {
             preferenceStatus.textContent = "Could not load your choices. Reopen the invite to try again.";
         }
     }
 
-    const createButton = section.querySelector("[data-create-room]");
-    const joinButton = joinForm.querySelector('button[type="submit"]');
     createButton.addEventListener("click", async () => {
         createButton.disabled = true;
         joinButton.disabled = true;
