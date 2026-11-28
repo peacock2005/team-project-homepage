@@ -13,7 +13,7 @@ form.addEventListener("submit", async event => {
     if (submitButton.disabled) return;
 
     const choices = new FormData(form);
-    const genres = choices.getAll("genre").map(genre => genre.toLowerCase());
+    const genres = choices.getAll("genre");
     const avoidedTriggers = choices.getAll("content-warning");
     section.hidden = false;
     heading.focus();
@@ -25,19 +25,20 @@ form.addEventListener("submit", async event => {
         if (!catalog) {
             const response = await fetch(new URL("../data/recommendationMovies.json", import.meta.url));
             if (!response.ok) throw new Error("Sample catalog unavailable");
-            catalog = (await response.json()).map(movie => ({
-                ...movie,
-                genres: movie.genres.map(genre => genre.toLowerCase()),
-            }));
+            catalog = await response.json();
         }
 
         const movies = filterGroupMovies(catalog, [{ avoidedTriggers, genres }]);
         status.textContent = movies.length
-            ? "Showing sample movies that match your selections."
+            ? `${movies.length} matching sample ${movies.length === 1 ? "movie" : "movies"}`
             : "No sample movies match your selections.";
         for (const movie of movies) {
             const item = document.createElement("li");
-            item.textContent = movie.title;
+            const title = document.createElement("h3");
+            title.textContent = movie.title;
+            const genres = document.createElement("p");
+            genres.textContent = movie.genres.join(" · ");
+            item.append(title, genres);
             results.append(item);
         }
     } catch {

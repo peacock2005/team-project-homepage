@@ -235,7 +235,7 @@
           </fieldset>
         </form>
 
-        <button type="submit" form="filters-form" class="search-bar_button">Recommend for me</button>
+        <button type="submit" form="filters-form" class="search-bar_button solo-recommendations_button" aria-controls="solo-recommendations">Recommend for me</button>
 
         <!-- Content note -->
         <div class="content-note">
@@ -504,7 +504,7 @@
           <section id="solo-recommendations" aria-labelledby="solo-title" hidden>
             <h2 id="solo-title" tabindex="-1">Recommendations for you</h2>
             <p role="status"></p>
-            <ul></ul>
+            <ul class="solo-recommendations_list" role="list"></ul>
           </section>
 
           <details class="online-groups">
