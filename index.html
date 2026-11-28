@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frame Check</title>
+    <script src="src/js/featureNavigation.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,14 +21,14 @@
   <body>
     <div class="app">
       <!-- Sidebar with filters -->
-      <aside class="sidebar" id="filters" aria-label="Filters">
-        <details class="filters-panel">
-          <summary class="filters-panel_toggle">Filters</summary>
+      <aside class="sidebar" id="filters" aria-label="Personal recommendation filters">
+        <details class="filters-panel" open>
+          <summary class="filters-panel_toggle">Personal recommendation filters</summary>
 
           <form class="filters" id="filters-form">
 
           <div class="filters_header">
-            <h2 class="filters_title">
+            <h2 class="filters_title" id="personal-filters" tabindex="-1">
               <!-- Icon: Lucide (https://lucide.dev/icons/sliders-horizontal) -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +52,7 @@
                 <path d="M8 10v4" />
                 <path d="M8 12H3" />
               </svg>
-              Filters
+              Personal recommendations
             </h2>
 
             <button type="reset" class="filters_reset-button">
@@ -235,6 +236,8 @@
           </fieldset>
         </form>
 
+        <button type="submit" form="filters-form" class="search-bar_button solo-recommendations_button" aria-controls="solo-recommendations">Recommend for me</button>
+
         <!-- Content note -->
         <div class="content-note">
           <!-- Icon: Lucide (https://lucide.dev/icons/info) -->
@@ -265,28 +268,36 @@
       <div class="page">
         <!-- Header -->
         <header>
-          <h1>FRAME CHECK</h1>
+          <h1><a href="?">FRAME CHECK</a></h1>
         </header>
 
         <main>
           <!-- Search bar-->
-          <div class="search-row">
+          <form class="search-row" method="get">
+            <input type="hidden" name="view" value="search" />
             <p class="search-row_count">
-              Movie found <span class="search-row_number">24</span>
+              Search results <span class="search-row_number">0</span>
             </p>
 
             <div class="search-bar">
               <input
                 type="search"
                 id="search-input"
+                name="q"
+                required
                 class="search-bar_input"
-                placeholder="Search for movies by title or keyword.."
+                aria-label="Movie title" placeholder="Search for a movie title"
               />
-              <button id="search-button" class="search-bar_button">
+              <button type="submit" id="search-button" class="search-bar_button">
                 SEARCH
               </button>
             </div>
-          </div>
+          </form>
+
+          <nav class="feature-navigation" aria-label="Movie recommendations">
+            <a class="search-bar_button" href="?view=solo">Recommendations for me</a>
+            <a class="search-bar_button" href="?view=group">Group recommendations</a>
+          </nav>
 
           <!-- Active filters -->
           <!-- Icon: Lucide (https://lucide.dev/icons/x) -->
@@ -499,10 +510,54 @@
 
           <!-- Film card (placeholder) -->
           <div id="movie-grid"></div>
+          <section id="solo-recommendations" aria-labelledby="solo-title" hidden>
+            <h2 id="solo-title" tabindex="-1">Recommendations for you</h2>
+            <p role="status"></p>
+            <ul class="solo-recommendations_list" role="list"></ul>
+          </section>
+
+          <details class="online-groups" id="group-recommendations" open>
+            <summary>Group recommendations</summary>
+            <p>Create a room and share its invite link. Join by code if you only have the code.</p>
+            <button type="button" class="search-bar_button" data-create-room>Create room</button>
+            <form>
+              <label for="online-room-code">Room code</label>
+              <input id="online-room-code" name="roomCode" type="text" required autocomplete="off" autocapitalize="characters" spellcheck="false" />
+              <button type="submit" class="search-bar_button">Join by code</button>
+            </form>
+            <p role="status"></p>
+            <section class="online-groups_room" hidden>
+              <h3 tabindex="-1"></h3>
+              <p></p>
+              <label>Invite link <input type="url" readonly /></label>
+              <form class="online-groups_preferences">
+                <fieldset>
+                  <legend>Triggers to avoid</legend>
+                  <label><input type="checkbox" name="trigger" value="guns" /> Guns</label>
+                  <label><input type="checkbox" name="trigger" value="explicit-scenes" /> Sexually explicit scenes</label>
+                  <label><input type="checkbox" name="trigger" value="graphic-violence" /> Graphic violence</label>
+                </fieldset>
+                <fieldset>
+                  <legend>Preferred genres</legend>
+                  <label><input type="checkbox" name="genre" value="Drama" /> Drama</label>
+                  <label><input type="checkbox" name="genre" value="Comedy" /> Comedy</label>
+                  <label><input type="checkbox" name="genre" value="Adventure" /> Adventure</label>
+                  <label><input type="checkbox" name="genre" value="Horror" /> Horror</label>
+                </fieldset>
+                <button type="submit" class="search-bar_button">Done choosing</button>
+                <button type="button" class="search-bar_button" data-edit-choices hidden>Edit choices</button>
+                <p role="status"></p>
+              </form>
+            </section>
+          </details>
+
         </main>
       </div>
     </div>
     
+
+    <script type="module" src="src/js/onlineGroups.js"></script>
+    <script type="module" src="src/js/soloRecommendations.js"></script>
     <script type="module" src="src/js/app.js"></script>
   </body>
 </html>

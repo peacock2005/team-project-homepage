@@ -1,0 +1,9 @@
+[
+  { "id": 101, "title": "The Quiet Station", "genres": ["Drama"], "triggers": ["death"] },
+  { "id": 102, "title": "Last Train to Monday", "genres": ["Comedy", "Romance"], "triggers": ["sexual-content"] },
+  { "id": 103, "title": "Map of the Sky", "genres": ["Adventure", "Animation", "Fantasy"], "triggers": [] },
+  { "id": 104, "title": "Signal in the Dark", "genres": ["Sci-Fi", "Thriller"], "triggers": ["violence", "guns"] },
+  { "id": 105, "title": "The House Beyond the Fog", "genres": ["Horror"], "triggers": ["violence", "death"] },
+  { "id": 106, "title": "Beneath the Tides", "genres": ["Documentary"], "triggers": ["animal-cruelty"] },
+  { "id": 107, "title": "One More Saturday", "genres": ["Drama", "Comedy"], "triggers": [] }
+]
