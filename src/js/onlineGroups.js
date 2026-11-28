@@ -31,10 +31,13 @@ export function setupOnlineGroups(section) {
     const preferences = room.querySelector(".online-groups_preferences");
     const preferenceStatus = preferences.querySelector("[role=status]");
     const saveButton = preferences.querySelector('button[type="submit"]');
+    const choiceFields = preferences.querySelectorAll('input[type="checkbox"]');
     let activeRoom;
+    let preferencesReady = false;
 
     preferences.addEventListener("submit", async event => {
         event.preventDefault();
+        if (!preferencesReady || saveButton.disabled) return;
         const code = activeRoom;
         const data = new FormData(preferences);
         saveButton.disabled = true;
@@ -49,14 +52,17 @@ export function setupOnlineGroups(section) {
         } catch {
             if (activeRoom === code) preferenceStatus.textContent = "Could not save your choices. Try again.";
         } finally {
-            saveButton.disabled = false;
+            if (activeRoom === code) saveButton.disabled = !preferencesReady;
         }
     });
 
-    function showRoom(code, isHost) {
-        if (activeRoom !== code) preferences.reset();
+    async function showRoom(code, isHost) {
+        preferences.reset();
+        preferencesReady = false;
+        saveButton.disabled = true;
+        for (const field of choiceFields) field.disabled = true;
         activeRoom = code;
-        preferenceStatus.textContent = "";
+        preferenceStatus.textContent = "Loading your choices…";
         heading.textContent = isHost ? `Room created · ${code}` : `Room joined · ${code}`;
         details.textContent = isHost
             ? "Share the invite link for one-click joining, or share the room code."
@@ -66,6 +72,24 @@ export function setupOnlineGroups(section) {
         status.textContent = "";
         room.hidden = false;
         heading.focus();
+
+        try {
+            const { loadRoomPreferences } = await import("./groupRooms.js");
+            const saved = await loadRoomPreferences(code);
+            const selected = {
+                trigger: new Set(saved?.avoidedTriggers),
+                genre: new Set(saved?.genres),
+            };
+            for (const field of choiceFields) {
+                field.checked = selected[field.name].has(field.value);
+                field.disabled = false;
+            }
+            preferencesReady = true;
+            saveButton.disabled = false;
+            preferenceStatus.textContent = saved ? "Your saved choices were restored." : "";
+        } catch {
+            preferenceStatus.textContent = "Could not load your choices. Reopen the invite to try again.";
+        }
     }
 
     const createButton = section.querySelector("[data-create-room]");
@@ -79,7 +103,7 @@ export function setupOnlineGroups(section) {
             const code = generateRoomCode();
             const { createRoom } = await import("./groupRooms.js");
             await createRoom(code);
-            showRoom(code, true);
+            await showRoom(code, true);
         } catch {
             status.textContent = "Could not create the room. Check your connection and try again.";
         } finally {
@@ -101,7 +125,7 @@ export function setupOnlineGroups(section) {
         try {
             const { joinRoom } = await import("./groupRooms.js");
             await joinRoom(code);
-            showRoom(code, false);
+            await showRoom(code, false);
         } catch {
             status.textContent = "Could not join this room. Check the invitation and try again.";
         } finally {

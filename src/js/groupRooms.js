@@ -34,3 +34,12 @@ export async function saveRoomPreferences(code, preferences) {
     ]);
     await setDoc(doc(getFirestore(app), "rooms", code, "preferences", user.uid), preferences);
 }
+
+export async function loadRoomPreferences(code) {
+    const [{ app, user }, { doc, getDocFromServer, getFirestore }] = await Promise.all([
+        getGuestSession(),
+        import(sdk + "firebase-firestore.js"),
+    ]);
+    const preferences = doc(getFirestore(app), "rooms", code, "preferences", user.uid);
+    return (await getDocFromServer(preferences)).data();
+}
