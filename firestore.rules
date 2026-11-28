@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /rooms/{code} {
+      allow create: if request.auth != null
+        && code.matches('^[A-HJ-NP-Z2-9]{8}$')
+        && request.resource.data.keys().hasAll(['hostUid', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['hostUid', 'createdAt'])
+        && request.resource.data.hostUid == request.auth.uid
+        && request.resource.data.createdAt == request.time;
+      allow get: if request.auth != null && resource.data.hostUid == request.auth.uid;
+    }
+  }
+}

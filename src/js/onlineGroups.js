@@ -28,10 +28,10 @@ export function setupOnlineGroups(section) {
     const inviteField = room.querySelector("input");
     const inviteLabel = room.querySelector("label");
     const status = section.querySelector("[role=status]");
-    function showRoomPreview(code, isHost) {
-        heading.textContent = `Room preview · ${code}`;
+    function showRoom(code, isHost) {
+        heading.textContent = isHost ? `Room created · ${code}` : `Room preview · ${code}`;
         details.textContent = isHost
-            ? "This preview link opens the join screen. Online participation will be available after Firebase is connected."
+            ? "Share this code or link. The join screen is currently a preview."
             : "This code is ready to use once online participation is enabled.";
         inviteLabel.hidden = !isHost;
         inviteField.value = isHost ? makeInviteLink(window.location.href, code) : "";
@@ -40,8 +40,24 @@ export function setupOnlineGroups(section) {
         heading.focus();
     }
 
-    section.querySelector("[data-create-room]").addEventListener("click", () => {
-        showRoomPreview(generateRoomCode(), true);
+    const createButton = section.querySelector("[data-create-room]");
+    const joinButton = joinForm.querySelector('button[type="submit"]');
+    createButton.addEventListener("click", async () => {
+        createButton.disabled = true;
+        joinButton.disabled = true;
+        room.hidden = true;
+        status.textContent = "Creating room…";
+        try {
+            const code = generateRoomCode();
+            const { createRoom } = await import("./groupRooms.js");
+            await createRoom(code);
+            showRoom(code, true);
+        } catch {
+            status.textContent = "Could not create the room. Check your connection and try again.";
+        } finally {
+            createButton.disabled = false;
+            joinButton.disabled = false;
+        }
     });
 
     joinForm.addEventListener("submit", event => {
@@ -53,7 +69,7 @@ export function setupOnlineGroups(section) {
             return;
         }
         codeInput.value = code;
-        showRoomPreview(code, false);
+        showRoom(code, false);
     });
 
     const inviteCode = new URLSearchParams(window.location.search).get("room");
@@ -62,7 +78,7 @@ export function setupOnlineGroups(section) {
         const code = normalizeRoomCode(inviteCode);
         if (code) {
             codeInput.value = code;
-            showRoomPreview(code, false);
+            showRoom(code, false);
         } else {
             status.textContent = "This invitation contains an invalid room code.";
         }

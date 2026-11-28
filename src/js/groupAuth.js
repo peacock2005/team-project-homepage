@@ -1,7 +1,7 @@
-const sdk = "https://www.gstatic.com/firebasejs/13.4.0/";
+export const sdk = "https://www.gstatic.com/firebasejs/13.4.0/";
 let guestSession;
 
-export function getGuestUser() {
+export function getGuestSession() {
     guestSession ??= connectGuest().catch(error => {
         guestSession = undefined;
         throw error;
@@ -20,5 +20,6 @@ async function connectGuest() {
         ?? initializeApp(firebaseConfig, name);
     const auth = getAuth(app);
     await auth.authStateReady();
-    return auth.currentUser ?? (await signInAnonymously(auth)).user;
+    const user = auth.currentUser ?? (await signInAnonymously(auth)).user;
+    return { app, user };
 }
