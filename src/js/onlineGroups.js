@@ -10,6 +10,7 @@ export function makeInviteLink(pageUrl, code) {
     const url = new URL(pageUrl);
     url.search = "";
     url.hash = "";
+    url.searchParams.set("view", "group");
     url.searchParams.set("room", code);
     return url.href;
 }

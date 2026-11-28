@@ -6,15 +6,16 @@ const smallScreen = window.matchMedia("(max-width: 767px)");
 function updateFiltersPanel(event) {
     if (!filtersPanel) return;
 
-    filtersPanel.open = !event.matches;
+    filtersPanel.open = document.documentElement.dataset.view === "solo" || !event.matches;
 }
 
 updateFiltersPanel(smallScreen);
 smallScreen.addEventListener("change", updateFiltersPanel);
 
+
 async function startApp() {
     const searchInput = document.querySelector("#search-input");
-    const searchButton = document.querySelector("#search-button");
+    const searchForm = document.querySelector(".search-row");
     const movieGrid = document.querySelector("#movie-grid");
     const movieCount = document.querySelector(".search-row_number");
 
@@ -136,15 +137,20 @@ async function startApp() {
         }
     }
 
-    // Search when the button is clicked.
-    searchButton.addEventListener("click", handleSearch);
-
-    // Search when Enter is pressed in the search input.
-    searchInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-            handleSearch();
+    if (document.documentElement.dataset.view === "search") {
+        searchForm.addEventListener("submit", event => {
+            event.preventDefault();
+            const url = new URL(window.location.href);
+            url.searchParams.set("q", searchInput.value.trim());
+            history.replaceState(null, "", url);
+            void handleSearch();
+        });
+        searchInput.value = new URLSearchParams(window.location.search).get("q") ?? "";
+        if (searchInput.value.trim()) {
+            void handleSearch();
+            return;
         }
-    });
+    }
 
     // Wait for the user to enter a search query.
     movieGrid.textContent = "Search for a movie by title.";
